@@ -1,15 +1,16 @@
 const express = require('express');
-const ensureAuthenticated = require('../utils/auth');
 const groupControllers = require('../controllers/groupControllers');
 
 const groupRouter = express.Router();
-// Apply auth to the beginning of each route
-groupRouter.use(ensureAuthenticated);
 
 // Create a group
-groupRouter.post('/create', groupControllers.creategroup);
+groupRouter.post('/create', groupControllers.createGroup, (req, res) => {
+  res.status(201).json(res.locals.newGroup);
+});
 
 // Join a group
-groupRouter.post('/join', groupControllers.joingroup);
+groupRouter.post('/join', groupControllers.joinGroup, (req, res) => {
+  res.status(200).json({ message: 'Joined group successfully' });
+});
 
 module.exports = groupRouter;

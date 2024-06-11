@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const ensureAuthenticated = require('./utils/auth');
 const authRouter = require('./routes/authRouter');
 const groupRouter = require('./routes/groupRouter');
 
@@ -17,7 +18,7 @@ app.use(express.static(path.join(__dirname, '../../client/src')));
 app.use('/auth', authRouter);
 
 // group Routes
-app.use('/group', groupRouter);
+app.use('/group', ensureAuthenticated, groupRouter);
 
 // 404 hanlder
 app.use('*', (req, res) => {
