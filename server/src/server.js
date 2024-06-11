@@ -1,10 +1,19 @@
+require('dotenv').config();
 const express = require('express');
-const app = express();
 const path = require('path');
+const cors = require('cors');
+const authRouter = require('./routes/authRoutes');
 
-const PORT = 3000;
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../../client/src')));
+
+// Auth Routes
+app.use('/auth', authRouter);
 
 // 404 hanlder
 app.use('*', (req, res) => {
