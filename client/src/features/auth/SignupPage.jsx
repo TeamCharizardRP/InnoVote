@@ -1,9 +1,11 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { setCreds, clearCreds, setError, clearError, setToken, clearToken } from './authSlice';
 
 const SignupPage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const username = useSelector((state) => state.rootReducer.username);
   const password = useSelector((state) => state.rootReducer.password);
   const error = useSelector((state) => state.rootReducer.error);
@@ -23,6 +25,7 @@ const SignupPage = () => {
       });
 
       const data = await response.json();
+      dispatch(setCreds());
 
       if (response.ok && data) {
         navigate('/login');
@@ -48,6 +51,7 @@ const SignupPage = () => {
         </div>
         <div className='action-buttons'>
           <button type='submit'>Sign up</button>
+          <Link to='/login'>Already have an account? Log in</Link>
         </div>
       </form>
     </div>

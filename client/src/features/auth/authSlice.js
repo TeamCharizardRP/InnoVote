@@ -16,8 +16,15 @@ const authSlice = createSlice({
       state.username = action.payload.username;
       state.password = action.payload.password;
     },
+    clearCreds: (state) => {
+      state.username = null;
+      state.password = null;
+    },
     setError: (state, action) => {
       state.error = action.payload;
+    },
+    clearError: (state) => {
+      state.error = null;
     },
     setToken: (state, action) => {
       state.userId = action.payload.userId;
@@ -31,5 +38,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { setCreds, setError, setToken, clearToken } = authSlice.actions;
+export const { setCreds, clearCreds, setError, clearError, setToken, clearToken } =
+  authSlice.actions;
 export default authSlice.reducer;

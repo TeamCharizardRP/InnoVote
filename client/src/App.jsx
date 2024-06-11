@@ -24,7 +24,7 @@ const App = () => {
             </ProtectedRoute>
           }
         /> */}
-        <Route path='/' element={<Navigate replace to='/signup' />} />
+        <Route path='/' element={<Navigate replace to='/login' />} />
       </Routes>
     </BrowserRouter>
   );
