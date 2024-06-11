@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const authRouter = require('./routes/authRoutes');
-const teamRouter = require('./routes/teamRoutes');
+const groupRouter = require('./routes/groupRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,8 +16,8 @@ app.use(express.static(path.join(__dirname, '../../client/src')));
 // Auth Routes
 app.use('/auth', authRouter);
 
-// Team Routes
-app.use('/team', teamRouter);
+// group Routes
+app.use('/group', groupRouter);
 
 // 404 hanlder
 app.use('*', (req, res) => {
