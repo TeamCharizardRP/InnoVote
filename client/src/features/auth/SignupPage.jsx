@@ -25,7 +25,7 @@ const SignupPage = () => {
       });
 
       const data = await response.json();
-      dispatch(setCreds());
+      dispatch(clearCreds());
 
       if (response.ok && data) {
         navigate('/login');
@@ -33,7 +33,7 @@ const SignupPage = () => {
         dispatch(setError('Username already exists'));
       }
     } catch (err) {
-      dispatch(setError('Error logging in'));
+      dispatch(setError('Error signing up'));
     }
   };
 
