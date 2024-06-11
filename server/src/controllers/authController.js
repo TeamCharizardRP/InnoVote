@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-// const db = require('../db'); //update address once db ready
+const db = require('../../config/db');
 
 const jwtSecret = process.env.JWT_SECRET;
 
