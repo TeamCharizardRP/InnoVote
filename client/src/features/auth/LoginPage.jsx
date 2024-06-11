@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCreds, clearCreds, setError, clearError, setToken, clearToken } from './authSlice';
 
-const SignupPage = () => {
+const LoginPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const username = useSelector((state) => state.rootReducer.username);
@@ -56,4 +56,4 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;
+export default LoginPage;
