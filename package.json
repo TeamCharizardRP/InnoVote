@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "nodemon server/src/server.js",
     "dev": "webpack serve --config webpack.config.js --open --mode=development",
@@ -20,7 +21,7 @@
     "babel-loader": "^9.1.3",
     "css-loader": "^7.1.2",
     "eslint": "^9.4.0",
-    "eslint-config-prettier": "^9.1.0",
+    "eslint-config-1rettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
     "html-webpack-plugin": "^5.6.0",
     "nodemon": "^3.1.3",
