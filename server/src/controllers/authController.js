@@ -13,8 +13,18 @@ const authControllers = {};
 authControllers.signup = async (req, res, next) => {
   const { username, password } = req.body;
   try {
+    // Check if the username already exists
+    const existingUser = await db.query('SELECT * FROM users WHERE user_name = $1', [username]);
+    if (existingUser.length > 0) {
+      return next({
+        log: 'Error in authControllers.signup: Username already exists',
+        status: 400,
+        message: 'Username already exists. Please choose a different username.',
+      });
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
-    await db.query('INSERT INTO users (username, password) VALUES ($1, $2)', [
+    await db.query('INSERT INTO users (user_name, password) VALUES ($1, $2)', [
       username,
       hashedPassword,
     ]);
@@ -31,15 +41,15 @@ authControllers.signup = async (req, res, next) => {
 authControllers.login = async (req, res, next) => {
   const { username, password } = req.body;
   try {
-    const result = await db.query('SELECT * FROM users WHERE username = $1', [username]);
-    if (result.rows.length === 0) {
+    const result = await db.query('SELECT * FROM users WHERE user_name = $1', [username]);
+    if (result.length === 0) {
       return next({
         log: 'Error in authControllers.login: User not found',
         status: 400,
         message: 'Invalid username or password',
       });
     }
-    const user = result.rows[0];
+    const user = result[0];
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return next({

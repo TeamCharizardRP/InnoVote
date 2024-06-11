@@ -19,10 +19,11 @@ const testConnection = async () => {
     console.log('Connection has been established successfully:', res.rows[0]);
   } catch (err) {
     console.error('Error executing query', err.stack);
-  } finally {
-    await pool.end();
-    console.log('Pool has ended');
   }
+  // finally {
+  //   await pool.end();
+  //   console.log('Pool has ended');
+  // }
 };
 testConnection();
 
@@ -33,9 +34,10 @@ const db = {
       return result.rows;
     } catch (err) {
       console.error('Query error:', err.stack);
-    } finally {
-      await pool.end();
     }
+    // finally {
+    //   await pool.end();
+    // }
   },
 };
 module.exports = db;
