@@ -9,8 +9,8 @@
     "dev": "webpack serve --config ./client/webpack.config.js --open --mode=development",
     "lint": "eslint .",
     "build": "webpack --config webpack.config.js --mode=production",
-    "test-backend": "jest --config client/jest.config.js --verbose",
-    "test-frontend": "jest --config server/jest.config.js--verbose",
+    "test-frontend": "jest --config client/jest.config.js --verbose",
+    "test-backend": "jest --config server/jest.config.js --verbose",
     "test": "npm run test-backend && npm run test-frontend"
   },
   "keywords": [],
