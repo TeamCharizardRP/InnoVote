@@ -1,7 +1,7 @@
-import { createRoot } from 'react-dom/client'; // Note the new import path for ReactDOM
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import store from './app/store';
-import App from './App';
+import store from './app/store.js';
+import App from './App.jsx';
 
 const rootElement = document.getElementById('root');
 
