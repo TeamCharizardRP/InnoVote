@@ -2,8 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-const authRouter = require('./routes/authRoutes');
-const groupRouter = require('./routes/groupRoutes');
+const authRouter = require('./routes/authRouter');
+const groupRouter = require('./routes/groupRouter');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
