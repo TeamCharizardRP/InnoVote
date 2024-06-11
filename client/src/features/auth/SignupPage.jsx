@@ -1,5 +1,6 @@
-import React, { useRef, useState } from 'react';
-import { useNavigate, useSelector } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -10,9 +11,7 @@ const SignupPage = () => {
   // Handler for submitting
   const handleSignup = async (e) => {
     e.preventDefault();
-
-    const username = usernameRef.current.value;
-    const password = passwordRef.current.value;
+    dispatch(setError(''));
 
     try {
       const response = await fetch(`http://localhost:3000/auth/signup`, {
@@ -28,28 +27,24 @@ const SignupPage = () => {
       if (response.ok && data) {
         navigate('/login');
       } else {
-        if (errorRef.current) {
-          errorRef.current.textContent = 'Username already exists';
-        }
+        dispatch(setError('Username already exists'));
       }
     } catch (err) {
-      if (errorRef.current) {
-        errorRef.current.textContent = 'Invalid username or password';
-      }
+      dispatch(setError('Error logging in'));
     }
   };
 
   return (
     <div className='sign-up'>
       <form onSubmit={handleSignup}>
-        <div ref={errorRef} className='error-message'></div>
+        <div ref={error} className='error-message'></div>
         <div className='input-field'>
           <label htmlFor='username'>Username</label>
-          <input type='text' id='username' ref={usernameRef} required />
+          <input type='text' id='username' ref={username} required />
         </div>
         <div className='input-field'>
           <label htmlFor='password'>Password</label>
-          <input type='password' id='password' ref={passwordRef} required />
+          <input type='password' id='password' ref={password} required />
         </div>
         <div className='action-buttons'>
           <button type='submit'>Sign up</button>

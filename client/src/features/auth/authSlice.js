@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState = {
-  username: '',
-  password: '',
-  error: '',
-  userId: localStorage.getItem('userId') || '',
-  token: localStorage.getItem('token') || '',
+  username: null,
+  password: null,
+  error: null,
+  userId: null,
+  token: localStorage.getItem('token') || null,
 };
 
 const authSlice = createSlice({
@@ -17,15 +17,13 @@ const authSlice = createSlice({
       state.password = action.payload.password;
     },
     setError: (state, action) => {
-      state.username = action.payload.username;
-      state.password = action.payload.password;
+      state.error = action.payload;
     },
     setToken: (state, action) => {
       state.userId = action.payload.userId;
       state.token = action.payload.token;
     },
     clearToken: (state) => {
-      localStorage.removeItem('userId');
       localStorage.removeItem('token');
       state.userId = null;
       state.token = null;
@@ -33,5 +31,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { setCreds, setToken, clearToken } = authSlice.actions;
+export const { setCreds, setError, setToken, clearToken } = authSlice.actions;
 export default authSlice.reducer;

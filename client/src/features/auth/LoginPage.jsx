@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setUsername, setPassword, setError } from './authSlice.js';
+import { setCreds, setError } from './authSlice.js';
 // import { setIsAuthenticated } from './appSlice.js';
 
 const LoginPage = () => {
@@ -14,8 +14,6 @@ const LoginPage = () => {
   // Handler for submitting
   const handleLogin = async (e) => {
     e.preventDefault();
-    // backend login engagement here
-    // setError('');
     dispatch(setError(''));
 
     try {
@@ -48,31 +46,6 @@ const LoginPage = () => {
 
   const handlePasswordChange = (e) => {
     dispatch(setPassword(e.target.value));
-  };
-
-  const handleSetInitialData = async () => {
-    try {
-      const response = await fetch(`http://localhost:3000/games`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username: username,
-          platforms: platforms,
-          genres: genres,
-        }),
-      });
-
-      if (!response.ok) {
-        console.log('Backend data fetching issue with filter');
-      }
-
-      const gamesData = await response.json();
-      dispatch(setInitialGames(gamesData));
-    } catch (error) {
-      console.error('Error fetching the games:', error);
-    }
   };
 
   return (
