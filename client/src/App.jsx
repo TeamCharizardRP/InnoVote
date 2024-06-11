@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import LoginPage from './features/auth/components/LoginButton.jsx';
-// import SignupPage from './pages/Signup.jsx';
+import LoginPage from './features/auth/LoginPage.jsx';
+import SignupPage from './features/auth/SignupPage.jsx';
 // import MainPage from './pages/Main.jsx';
 // import ProtectedRoute from './components/ProtectedRoute.jsx';
 
@@ -14,17 +14,17 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path='/login' element={<LoginPage />} />
+        <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<SignupPage />} />
-        <Route
+        {/* <Route
           path='/home'
           element={
             <ProtectedRoute>
               <MainPage />
             </ProtectedRoute>
           }
-        />
-        <Route path='/' element={<Navigate replace to='/login' />} /> */}
+        /> */}
+        <Route path='/' element={<Navigate replace to='/signup' />} />
       </Routes>
     </BrowserRouter>
   );
