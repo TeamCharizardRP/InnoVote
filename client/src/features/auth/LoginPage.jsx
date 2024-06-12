@@ -37,7 +37,8 @@ const LoginPage = () => {
       if (response.ok && data) {
         dispatch(setUserId(data.userId));
         dispatch(setToken(data.token));
-        navigate('/login');
+
+        navigate('/group');
       }
     } catch (err) {
       dispatch(setError('Error logging in'));
@@ -45,11 +46,11 @@ const LoginPage = () => {
   };
 
   return (
-    <div className='sign-up'>
+    <div className='login'>
+      <h1 className='title'>InnoVote</h1>
+      <h3 className='title'>Log in with your username and password</h3>
       <form onSubmit={handleSignup}>
-        {/* apparently ref can't be a string so it'll error out in cases where error is a string */}
-        {/* <div ref={error} className='error-message'></div>{' '} */}
-        {error && <div className='error-message'>{error}</div>}
+        {error && <div className='error-message'>Error message here</div>}
         <div className='input-field'>
           <label htmlFor='username'>Username</label>
           <input
@@ -66,13 +67,16 @@ const LoginPage = () => {
             type='password'
             id='password'
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => dispatch(setPassword(e.target.value))}
             required
           />
         </div>
         <div className='action-buttons'>
           <button type='submit'>Log in</button>
-          <Link to='/signup'>Don't have an account? Sign up here</Link>
+          <div className='signup-text'>
+            <span>Need an account? </span>
+            <Link to='/signup'>Sign up</Link>
+          </div>
         </div>
       </form>
     </div>

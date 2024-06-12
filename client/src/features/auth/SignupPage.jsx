@@ -38,11 +38,11 @@ const SignupPage = () => {
   };
 
   return (
-    <div className='sign-up'>
+    <div className='login'>
+      <h1 className='title'>InnoVote</h1>
+      <h3 className='title'>Sign up with your username and password</h3>
       <form onSubmit={handleSignup}>
-        {/* apparently ref can't be a string so it'll error out in cases where error is a string */}
-        {/* <div ref={error} className='error-message'></div>{' '} */}
-        {error && <div className='error-message'>{error}</div>}{' '}
+        {error && <div className='error-message'>{error}</div>}
         <div className='input-field'>
           <label htmlFor='username'>Username</label>
           <input
@@ -65,7 +65,10 @@ const SignupPage = () => {
         </div>
         <div className='action-buttons'>
           <button type='submit'>Sign up</button>
-          <Link to='/login'>Already have an account? Log in</Link>
+          <div className='signup-text'>
+            <span>Have an account? </span>
+            <Link to='/login'>Login</Link>
+          </div>
         </div>
       </form>
     </div>

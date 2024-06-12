@@ -1,6 +1,7 @@
 import path from 'path';
 import process from 'process';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 import { fileURLToPath } from 'url';
 
@@ -31,8 +32,8 @@ export default {
         },
       },
       {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        test: /\.s?css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
     ],
   },
@@ -43,6 +44,9 @@ export default {
     new HtmlWebpackPlugin({
       template: './client/index.html', // Path to your index.html
       filename: 'index.html',
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'bundle.css',
     }),
   ],
   devServer: {
