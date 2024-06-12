@@ -12,4 +12,9 @@ groupRouter.post('/join', groupControllers.joinGroup, (req, res) => {
   res.status(200).json({ message: 'Joined group successfully' });
 });
 
+// Get the full list of groups joined by the user
+groupRouter.get('/list', groupControllers.listGroups, (req, res) => {
+  res.status(200).json(res.locals.listGroups);
+});
+
 export default groupRouter;
