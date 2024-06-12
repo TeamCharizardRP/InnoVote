@@ -9,7 +9,7 @@ import {
   clearError,
   setToken,
   clearToken,
-} from './authSlice';
+} from './authSlice.js';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -67,7 +67,7 @@ const LoginPage = () => {
             type='password'
             id='password'
             value={password}
-            onChange={(e) => dispatch(setPassword(e.target.value))}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
