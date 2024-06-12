@@ -9,7 +9,7 @@ const groupSlice = createSlice({
   initialState,
   reducers: {
     addGroup: (state, action) => {
-      state.groupId = action.payload;
+      state.group = action.payload;
     },
   },
 });

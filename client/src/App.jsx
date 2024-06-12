@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import ProtectedRoute from './features/auth/ProtectedRoute.jsx';
 import LoginPage from './features/auth/LoginPage.jsx';
 import SignupPage from './features/auth/SignupPage.jsx';
 import GroupPage from './features/group/GroupPage.jsx';
 import IdeasPage from './features/ideas/IdeasPage.jsx';
 // import NewIdeaPage from './features/ideas/NewIdeaPage.jsx';
-import ProtectedRoute from './features/auth/ProtectedRoute.jsx';
 
 // import MainPage from './pages/Main.jsx';
 

@@ -8,7 +8,7 @@ const ensureAuthenticated = (req, res, next) => {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
-  const token = authHeader.split(' ')[1];
+  const token = authHeader.split(' ')[1]; // Change it to [0] if the frontend is not set up with Bearer
   if (!token) {
     return res.status(401).json({ error: 'Unauthorized' });
   }

@@ -5,6 +5,7 @@ import cors from 'cors';
 import ensureAuthenticated from './utils/auth.js';
 import authRouter from './routes/authRouter.js';
 import groupRouter from './routes/groupRouter.js';
+import ideaRouter from './routes/ideaRouter.js';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -16,8 +17,11 @@ app.use(express.static(path.resolve('client/src')));
 // Auth Routes
 app.use('/auth', authRouter);
 
-// group Routes
+// Group Routes
 app.use('/group', ensureAuthenticated, groupRouter);
+
+// Idea Posts Routes
+app.use('/idea', ensureAuthenticated, ideaRouter);
 
 // 404 hanlder
 app.use('*', (req, res) => {
