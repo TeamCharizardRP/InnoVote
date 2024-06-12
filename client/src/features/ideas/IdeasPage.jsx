@@ -9,11 +9,11 @@ const IdeasPage = () => {
   // const ideasList = useSelector((state) => state.ideas.ideasList);
   const token = useSelector((state) => state.auth.token);
   const error = useSelector((state) => state.auth.error);
-  const groupId = useSelector((state) => state.groups.groupId);
+  // const groupId = useSelector((state) => state.groups.groupId);
 
-  useEffect(async () => {
-    fetchIdeas(groupId); // get groupId from state
-  }, []);
+  // useEffect(async () => {
+  //   fetchIdeas(groupId); // get groupId from state
+  // }, []);
 
   // test data
   const idea = {
@@ -23,12 +23,19 @@ const IdeasPage = () => {
     description: 'very descriptive',
     num_comments: 0,
   };
-  const ideasList = [idea];
+  const idea2 = {
+    post_id: 2,
+    num_votes: 10,
+    title: 'big title',
+    description: 'very descriptive',
+    num_comments: 0,
+  };
+  const ideasList = [idea, idea2];
 
   return (
     <div id='ideas-list'>
       <table id='ideas-table'>
-        {ideasList.map((idea) => {
+        {ideasList.map((idea) => (
           <tbody key={idea.post_id} className='idea-container'>
             <tr id={idea.post_id} className='ideas'>
               <td className='idea-votes'>{idea.num_votes}</td>
@@ -38,29 +45,29 @@ const IdeasPage = () => {
               </td>
               <td className='idea-comments'>{idea.num_comments}</td>
             </tr>
-          </tbody>;
-        })}
+          </tbody>
+        ))}
       </table>
     </div>
   );
 };
 
-const fetchIdeas = async (groupId) => {
-  const dispatch = useDispatch();
-  try {
-    const response = await fetch(`/ideas/:${groupId}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const data = await response.json(); // array of obj of ideas
-    const sortedList = data.sort((a, b) => a.num_votes - b.num_votes);
-    dispatch(setIdeasList(sortedList));
-  } catch (err) {
-    dispatch(setError('Error getting list of posts'));
-  }
-};
+// const fetchIdeas = async (groupId) => {
+//   const dispatch = useDispatch();
+//   try {
+//     const response = await fetch(`/ideas/:${groupId}`, {
+//       method: 'GET',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         Authorization: `Bearer ${token}`,
+//       },
+//     });
+//     const data = await response.json(); // array of obj of ideas
+//     const sortedList = data.sort((a, b) => a.num_votes - b.num_votes);
+//     dispatch(setIdeasList(sortedList));
+//   } catch (err) {
+//     dispatch(setError('Error getting list of posts'));
+//   }
+// };
 
 export default IdeasPage;
