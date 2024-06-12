@@ -1,4 +1,4 @@
-const db = require('../../config/db');
+import db from '../../config/db.js';
 
 const groupControllers = {};
 
@@ -86,4 +86,4 @@ groupControllers.joinGroup = async (req, res, next) => {
   }
 };
 
-module.exports = groupControllers;
+export default groupControllers;

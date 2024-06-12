@@ -1,4 +1,4 @@
-const pg = require('pg');
+import pg from 'pg';
 const { Pool } = pg;
 
 const pool = new Pool({
@@ -13,19 +13,19 @@ const pool = new Pool({
 });
 
 // Run to test db connection
-const testConnection = async () => {
-  try {
-    const res = await pool.query('SELECT NOW()');
-    console.log('Connection has been established successfully:', res.rows[0]);
-  } catch (err) {
-    console.error('Error executing query', err.stack);
-  }
-  // finally {
-  //   await pool.end();
-  //   console.log('Pool has ended');
-  // }
-};
-testConnection();
+// const testConnection = async () => {
+//   try {
+//     const res = await pool.query('SELECT NOW()');
+//     console.log('Connection has been established successfully:', res.rows[0]);
+//   } catch (err) {
+//     console.error('Error executing query', err.stack);
+//   }
+// finally {
+//   await pool.end();
+//   console.log('Pool has ended');
+// }
+// };
+// testConnection();
 
 const db = {
   async query(queryString, values) {
@@ -40,4 +40,4 @@ const db = {
     // }
   },
 };
-module.exports = db;
+export default db;

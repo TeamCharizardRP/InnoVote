@@ -1,6 +1,6 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const db = require('../../config/db');
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import db from '../../config/db.js';
 
 const jwtSecret = process.env.JWT_SECRET;
 
@@ -12,6 +12,7 @@ const authControllers = {};
 
 authControllers.signup = async (req, res, next) => {
   const { username, password } = req.body;
+  console.log(password);
   try {
     // Check if the username already exists
     const existingUser = await db.query('SELECT * FROM users WHERE user_name = $1', [username]);
@@ -71,4 +72,4 @@ authControllers.login = async (req, res, next) => {
   }
 };
 
-module.exports = authControllers;
+export default authControllers;

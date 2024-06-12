@@ -1,18 +1,17 @@
-require('dotenv').config();
-const express = require('express');
-const path = require('path');
-const cors = require('cors');
-const ensureAuthenticated = require('./utils/auth');
-const authRouter = require('./routes/authRouter');
-const groupRouter = require('./routes/groupRouter');
-
+import 'dotenv/config';
+import express from 'express';
+import path from 'path';
+import cors from 'cors';
+import ensureAuthenticated from './utils/auth.js';
+import authRouter from './routes/authRouter.js';
+import groupRouter from './routes/groupRouter.js';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '../../client/src')));
+app.use(express.static(path.resolve('client/src')));
 
 // Auth Routes
 app.use('/auth', authRouter);
@@ -43,4 +42,4 @@ app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}...`);
 });
 
-module.exports = app;
+export default app;
