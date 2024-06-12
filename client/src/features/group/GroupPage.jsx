@@ -3,13 +3,13 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setUsername, setError, clearError } from '../auth/authSlice.js';
 import { addGroup } from '../group/groupSlice.js';
+import GroupList from './GroupList.jsx';
 
 const GroupPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const username = useSelector((state) => state.auth.username);
   const error = useSelector((state) => state.auth.error);
-  const group = useSelector((state) => state.group.groups);
 
   const handleJoin = async (e) => {
     e.preventDefault();
@@ -33,6 +33,9 @@ const GroupPage = () => {
 
   return (
     <div>
+      <div className='group-page'>
+        <GroupList />
+      </div>
       <div className='login'>
         <h1 className='title'>{`Hi, ${username}!`}</h1>
         <form onSubmit={handleJoin}>
