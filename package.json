@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "build": "webpack --config webpack.config.js --mode=production",
     "test-frontend": "jest --config client/jest.config.js --verbose",
-    "test-backend": "jest --config server/jest.config.js --verbose",
+    "test-backend": "jest --config server/jest.config.cjs --verbose",
     "test": "npm run test-backend && npm run test-frontend"
   },
   "keywords": [],
