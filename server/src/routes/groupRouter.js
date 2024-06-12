@@ -1,6 +1,5 @@
-const express = require('express');
-const groupControllers = require('../controllers/groupControllers');
-
+import express from 'express';
+import groupControllers from '../controllers/groupControllers.js';
 const groupRouter = express.Router();
 
 // Create a group
@@ -9,8 +8,8 @@ groupRouter.post('/create', groupControllers.createGroup, (req, res) => {
 });
 
 // Join a group
-groupRouter.post('/join', groupControllers.joinGroup, (req, res) => {
-  res.status(200).json({ message: 'Joined group successfully' });
-});
+// groupRouter.post('/join', groupControllers.joinGroup, (req, res) => {
+//   res.status(200).json({ message: 'Joined group successfully' });
+// });
 
-module.exports = groupRouter;
+export default groupRouter;
