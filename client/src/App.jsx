@@ -1,9 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from './features/auth/LoginPage.jsx';
 import SignupPage from './features/auth/SignupPage.jsx';
-import GroupPage from './features/group/GroupPage.jsx';
-import IdeaPage from './features/group/GroupPage.jsx';
-import ProtectedRoute from './features/auth/ProtectedRoute.jsx';
+import IdeasPage from './features/ideas/IdeasPage.jsx';
+import NewIdeaPage from './features/ideas/NewIdeaPage.jsx';
+// import MainPage from './pages/Main.jsx';
+// import ProtectedRoute from './components/ProtectedRoute.jsx';
 
 import './styles/styles.scss';
 
@@ -22,13 +23,19 @@ const App = () => {
           }
         />
         <Route
-          path='/idea'
+          path='/ideas'
           element={
             <ProtectedRoute>
-              <IdeaPage />
+              <IdeasPage />
             </ProtectedRoute>
-          }
-        />
+          }/>
+          <Route
+          path='/new'
+          element={
+            <ProtectedRoute>
+              <NewIdeaPage />
+            </ProtectedRoute>
+          }/>
         <Route path='/' element={<Navigate replace to='/login' />} />
       </Routes>
     </BrowserRouter>
