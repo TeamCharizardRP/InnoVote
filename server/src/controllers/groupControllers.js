@@ -4,6 +4,7 @@ const groupControllers = {};
 
 groupControllers.createGroup = async (req, res, next) => {
   const { group_name } = req.body;
+  const user_id = req.userId; // Using the authenticated user ID
   try {
     // Check if the group name already exists
     const existingGroup = await db.query('SELECT * FROM groups WHERE group_name = $1', [
