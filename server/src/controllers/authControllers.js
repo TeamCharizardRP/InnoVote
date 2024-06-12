@@ -12,7 +12,7 @@ const authControllers = {};
 
 authControllers.signup = async (req, res, next) => {
   const { username, password } = req.body;
-  console.log(password);
+  console.log(username, password);
   try {
     // Check if the username already exists
     const existingUser = await db.query('SELECT * FROM users WHERE user_name = $1', [username]);

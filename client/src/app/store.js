@@ -4,10 +4,9 @@ import rootReducer from './rootReducer.js';
 // import { setupListeners } from '@reduxjs/toolkit/query';
 
 export const store = configureStore({
-  reducer: {
-    rootReducer,
-    // [authApi.reducerPath]: authApi.reducer,
-  },
+  reducer: rootReducer,
+  // [authApi.reducerPath]: authApi.reducer,
+
   // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(authApi.middleware),
 });
 
