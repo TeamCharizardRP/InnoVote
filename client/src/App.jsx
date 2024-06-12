@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from './features/auth/LoginPage.jsx';
 import SignupPage from './features/auth/SignupPage.jsx';
 import GroupPage from './features/group/GroupPage.jsx';
+import IdeaPage from './features/group/GroupPage.jsx';
 import ProtectedRoute from './features/auth/ProtectedRoute.jsx';
 
 import './styles/styles.scss';
@@ -17,6 +18,14 @@ const App = () => {
           element={
             <ProtectedRoute>
               <GroupPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/idea'
+          element={
+            <ProtectedRoute>
+              <IdeaPage />
             </ProtectedRoute>
           }
         />

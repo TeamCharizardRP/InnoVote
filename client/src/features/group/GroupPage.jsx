@@ -1,62 +1,60 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  setUsername,
-  clearCreds,
-  setError,
-  clearError,
-  setToken,
-  clearToken,
-} from '../auth/authSlice.js';
+import { setUsername, setError, clearError } from '../auth/authSlice.js';
+import { addGroup } from '../group/groupSlice.js';
 
 const GroupPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const username = useSelector((state) => state.auth.username);
-  const [password, setPassword] = useState(''); // best practice would be to hash
   const error = useSelector((state) => state.auth.error);
+  const group = useSelector((state) => state.group.groups);
 
-  const handleSignup = async (e) => {
+  const handleJoin = async (e) => {
     e.preventDefault();
-    setPassword('');
     dispatch(clearError());
     try {
-      navigate('/login');
+      navigate(`/idea`);
+    } catch (err) {
+      dispatch(setError('Error logging in'));
+    }
+  };
+
+  const handleAdd = async (e) => {
+    e.preventDefault();
+    dispatch(clearError());
+    try {
+      navigate(`/idea`);
     } catch (err) {
       dispatch(setError('Error logging in'));
     }
   };
 
   return (
-    <div className='login'>
-      <form onSubmit={handleSignup}>
-        {error && <div className='error-message'>{error}</div>}{' '}
-        <div className='input-field'>
-          <label htmlFor='username'>Join Group</label>
-          <input
-            type='text'
-            id='username'
-            value={username}
-            onChange={(e) => dispatch(setUsername(e.target.value))}
-            required
-          />
-        </div>
-        <div className='input-field'>
-          <label htmlFor='password'>Create Group</label>
-          <input
-            type='password'
-            id='password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <div className='action-buttons'>
-          <button type='submit'>Sign up</button>
-          <Link to='/login'>Already have an account? Log in</Link>
-        </div>
-      </form>
+    <div>
+      <div className='login'>
+        <h1 className='title'>{`Hi, ${username}!`}</h1>
+        <form onSubmit={handleJoin}>
+          {error && <div className='error-message'>{error}</div>}
+          <div className='input-field'>
+            <label htmlFor='group code'>Join Group</label>
+            <input type='text' id='username' placeholder='group name' required />
+          </div>
+          <div className='action-buttons'>
+            <button type='submit'>Join</button>
+          </div>
+        </form>
+        <form onSubmit={handleAdd}>
+          <div className='input-field'>
+            <label htmlFor='group code'>Add Group</label>
+            <input type='text' id='username' placeholder='group name' required />
+          </div>
+          <div className='action-buttons'>
+            <button type='submit'>Add</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

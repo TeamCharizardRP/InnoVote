@@ -11,8 +11,8 @@ body {
 
 .login {
   background-color: $green;
-  height: 100vh; // Full viewport height
-  width: 100vw; // Full viewport width
+  height: 100vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,14 +24,14 @@ body {
     width: 245px;
 
     .error-message {
-      color: red;
+      color: rgb(67, 57, 255);
       font-weight: bold;
       margin-bottom: 10px;
       text-align: center;
     }
 
     .input-field {
-      margin-bottom: 20px;
+      margin-bottom: 5px;
 
       label {
         display: block;

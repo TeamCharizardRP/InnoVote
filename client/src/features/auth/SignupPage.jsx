@@ -30,7 +30,7 @@ const SignupPage = () => {
       if (response.ok && data) {
         navigate('/login');
       } else {
-        dispatch(setError('Username already exists'));
+        dispatch(setError(data));
       }
     } catch (err) {
       dispatch(setError('Error signing up'));
@@ -41,6 +41,7 @@ const SignupPage = () => {
     <div className='login'>
       <h1 className='title'>InnoVote</h1>
       <h3 className='title'>Sign up with your username and password</h3>
+      <h3 className='title'>Sign up</h3>
       <form onSubmit={handleSignup}>
         {error && <div className='error-message'>{error}</div>}
         <div className='input-field'>

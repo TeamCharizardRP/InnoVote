@@ -1,15 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  setUsername,
-  setUserId,
-  clearCreds,
-  setError,
-  clearError,
-  setToken,
-  clearToken,
-} from './authSlice.js';
+import { setUsername, setUserId, setError, clearError, setToken } from './authSlice.js';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -39,6 +31,8 @@ const LoginPage = () => {
         dispatch(setToken(data.token));
 
         navigate('/group');
+      } else {
+        dispatch(setError(data));
       }
     } catch (err) {
       dispatch(setError('Error logging in'));
@@ -49,8 +43,9 @@ const LoginPage = () => {
     <div className='login'>
       <h1 className='title'>InnoVote</h1>
       <h3 className='title'>Log in with your username and password</h3>
+      <h3 className='title'>Log in</h3>
       <form onSubmit={handleSignup}>
-        {error && <div className='error-message'>Error message here</div>}
+        {error && <div className='error-message'>{error}</div>}
         <div className='input-field'>
           <label htmlFor='username'>Username</label>
           <input

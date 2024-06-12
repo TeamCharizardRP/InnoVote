@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  groups: [],
+  groups: {},
 };
 
 const groupSlice = createSlice({
@@ -9,7 +9,7 @@ const groupSlice = createSlice({
   initialState,
   reducers: {
     addGroup: (state, action) => {
-      state.groups.push(action.payload);
+      state.groups[action.payload] = [];
     },
   },
 });
