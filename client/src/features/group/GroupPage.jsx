@@ -1,9 +1,8 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCreds, clearCreds, setError, clearError, setToken, clearToken } from './authSlice';
 
-const LoginPage = () => {
+const GroupPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const username = useSelector((state) => state.rootReducer.username);
@@ -56,4 +55,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default GroupPage;
